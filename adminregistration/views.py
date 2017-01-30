@@ -2,10 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm,Userloginform,changepasswordform
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group,Permission
 from .models import registration
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect,HttpResponse
+from django.contrib.contenttypes.models import ContentType
 
 
 
@@ -22,6 +23,12 @@ def userregistrationform(request):
             password = data['password1']
             phonenumber = data['phonenumber']
             adminuser = User.objects.create_user(username=username,email=email,password=password)
+            adminuser.first_name = data['firstname']
+            adminuser.last_name = data['lastname']
+            adminuser.is_staff = True
+            adminuser.is_active=True
+            adminuser.is_superuser=True
+            adminuser.save()
             registration.objects.create(user=adminuser,phonenumber=phonenumber)
             request.method="GET"
             return HttpResponseRedirect(reverse('home'))
