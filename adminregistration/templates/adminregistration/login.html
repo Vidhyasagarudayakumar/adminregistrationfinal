@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<html>
+    <head>
+
+    <style>
+        .changepass{
+
+     position:fixed;
+    right:10px;
+         top:5px;
+}
+.middlepage{height: 200px;
+    width: 400px;
+    
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;}
+    </style>
+
+				
+
+        <title>Admin Portal</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    </head>
+    <body>
+        <div class="page-header">
+
+            <h1><a href="" margin-left: "inherit">Admin Portal</a></h1>
+
+        </div>
+
+
+  <div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+		
+            {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+		<div>
+				
+				<p class="top-menu">Welcome, new user. Please log in. </p>
+				<a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+				</div>
+    <form method="post" class="middlepage">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <a>
+        <input type="submit" value="login" />
+        </a>
+        <a href="{% url 'register' %}">
+        <input type="button" value="Register"  />
+        </a>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+        </div>
+    </div>
+</div>
+    </body>
+</html>
