@@ -20,9 +20,9 @@ from django.contrib.auth import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('adminregistration.urls')),
-    url(r'^resetpassword/passwordsent/$',views.password_reset_done, name='resetdone'),
-    url(r'^resetpassword/$', views.password_reset, name='reset'),
-    url(r'^reset/$', views.password_reset_confirm, name='resetconfirm'),
-    url(r'^reset/done$', views.password_reset_confirm, name='resetdone'),
+    url(r'^resetpassword/passwordsent/$',views.password_reset_done, name='password_reset_done'),
+    url(r'^resetpassword/$', views.password_reset,{'template_name':'registration/password_reset_form.html','from_email':'sandbox@sparkpostbox.com'}, name='password_reset'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.password_reset_confirm, name='password_reset_confirm'),
+    url(r'^reset/done$', views.password_reset_complete, name='password_reset_complete'),
 
 ]

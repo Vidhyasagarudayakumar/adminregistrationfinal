@@ -121,3 +121,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL ='/login/'
+SPARKPOST_API_KEY = '5b5d709328e1f6ef44e60971121a75ae5e7130ce'
+EMAIL_BACKEND = 'sparkpost.django.email_backend.SparkPostEmailBackend'
