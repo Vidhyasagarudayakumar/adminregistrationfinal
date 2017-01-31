@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.contrib.auth import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('adminregistration.urls')),
+    url(r'^resetpassword/passwordsent/$',views.password_reset_done, name='resetdone'),
+    url(r'^resetpassword/$', views.password_reset, name='reset'),
+    url(r'^reset/$', views.password_reset_confirm, name='resetconfirm'),
+    url(r'^reset/done$', views.password_reset_confirm, name='resetdone'),
+
 ]

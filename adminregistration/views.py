@@ -68,9 +68,15 @@ def loginform(request):
 
     return render(request, 'adminregistration/login.html', {'form': form})
 
+
+
+
+
 def logoutt(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
+
 
 
 
@@ -80,6 +86,10 @@ def home(request):
         return render(request, 'adminregistration/base.html')
     else:
         return HttpResponseRedirect(reverse('login'))
+
+
+
+
 
 @login_required
 def changepassword(request):
